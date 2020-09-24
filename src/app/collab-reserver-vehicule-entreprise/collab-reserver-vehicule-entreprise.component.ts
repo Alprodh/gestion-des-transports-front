@@ -34,10 +34,10 @@ export class CollabReserverVehiculeEntrepriseComponent implements OnInit {
     this.dateValid = this.vehicules.includes( this.vehiculeSelected) &&
       !this.vehiculeSelected.dispoReservation.filter( reserv => reserv.statutReservation === 'ACCEPTEE' || 'EN_ATTENTE')
       .some( datesInvalides =>
-        ( new Date( this.reservation.dateDepart).getTime() > new Date( datesInvalides.dateDepart).getTime()
-        && new Date( this.reservation.dateDepart).getTime() < new Date( datesInvalides.dateArrivee).getTime())
-        || ( new Date( datesInvalides.dateDepart).getTime() < new Date( this.reservation.dateArrivee).getTime()
-        && new Date( this.reservation.dateArrivee).getTime() > new Date( datesInvalides.dateArrivee).getTime()));
+        ( new Date( this.reservation.dateDepart) >= new Date( datesInvalides.dateDepart)
+        && new Date( this.reservation.dateDepart) <= new Date( datesInvalides.dateArrivee))
+        || ( new Date( this.reservation.dateArrivee) >= new Date( datesInvalides.dateDepart)
+        && new Date( this.reservation.dateArrivee) <= new Date( datesInvalides.dateArrivee)));
   }
 
   selectVehicule( vehicule: VehiculeSansChauffeur): void {
