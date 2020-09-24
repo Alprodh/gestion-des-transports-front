@@ -32,7 +32,7 @@
 
         <tbody>
           <tr *ngFor="let ann of annoncesEnCours">
-            <td>{{ann.dateDepart | date:'dd/MM/yyyy hh:mm'}}</td>
+            <td>{{ann.dateDepart | date:'dd/MM/yyyy HH:mm'}}</td>
             <td>{{ann.infosDepart}}</td>
             <td>{{ann.infosDestination}}</td>
             <td>{{ann.nbPlacesDisponibles}}</td>
@@ -58,7 +58,7 @@
 
         <tbody>
           <tr *ngFor="let ann of annoncesHistorique | paginate: {itemsPerPage:4, currentPage: p}; let i = index">
-            <td>{{ann.dateDepart | date:'dd/MM/yyyy hh:mm'}}</td>
+            <td>{{ann.dateDepart | date:'dd/MM/yyyy HH:mm'}}</td>
             <td>{{ann.infosDepart}}</td>
             <td>{{ann.infosDestination}}</td>
             <td>{{ann.nbPlacesDisponibles}}</td>
