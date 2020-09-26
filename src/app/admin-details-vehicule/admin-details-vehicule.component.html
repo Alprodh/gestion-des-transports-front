@@ -1,67 +1,62 @@
-<mat-grid-list cols="3" rowHeight="20px" gutterSize="10px">
-  <mat-grid-tile [colspan]="1" [rowspan]="12">
-    <img class="car-image" [src]="vehicule.photoUrl">
-  </mat-grid-tile>
-  <mat-grid-tile class="text-alignement" [colspan]="1" [rowspan]="3">
-    <div>Marque: {{vehicule.marque}}</div>
-  </mat-grid-tile>
+<div class="row align-items-center mt-5 m-3">
+  <div class="col-4">
+        <img class="w-100" [src]="vehicule.photoUrl">
+  </div>
+  <div class="col-4">
+        <table class="table text-centered w-max">
+          <tbody>
+            <tr>
+              <th scope="row">Marque</th>
+              <td>{{ vehicule.marque }}</td>
+            </tr>
+            <tr>
+              <th scope="row">Modèle</th>
+              <td>{{ vehicule.modele }}</td>
+            </tr>
+            <tr>
+              <th scope="row">Catégorie</th>
+              <td>{{ vehicule.categorie }}</td>
+            </tr>
+            <tr>
+              <th scope="row">Statut</th>
+              <td>{{ vehicule.statutVehicule }}</td>
+            </tr>
+          </tbody>
+        </table>
+  </div>
+  <div class="col-4">
+    <div class="text-center">
+        <button class="btn btn-primary" (click)='updateToReparation()'
+        [disabled]="vehicule.statutVehicule == 'EN SERVICE'  || vehicule.statutVehicule == 'HORS SERVICE' ">
+        Mettre en réparation</button><br/>
+        <button class="btn btn-primary mt-3 mb-3" (click)='updateToInService()'
+        [disabled]="vehicule.statutVehicule == 'HORS SERVICE'  || vehicule.statutVehicule == 'EN REPARATION' ">
+        Mettre en service</button><br/>
+        <button class="btn btn-danger" (click)='updateToOutOfService()'
+        [disabled]="vehicule.statutVehicule == 'EN SERVICE'  || vehicule.statutVehicule == 'EN REPARATION' ">
+        Hors service</button>
+      </div>
+    </div>
+</div>
 
-  <mat-grid-tile class="text-alignement" [colspan]="1" [rowspan]="4">
-    <button class="btn btn-primary" (click)='updateToReparation()'
-      [disabled]="vehicule.statutVehicule == 'EN SERVICE'  || vehicule.statutVehicule == 'HORS SERVICE' ">Mettre en
-      réparation</button>
-  </mat-grid-tile>
-
-  <mat-grid-tile class="text-alignement" [colspan]="1" [rowspan]="3">
-    <div>Modèle: {{vehicule.modele}}</div>
-  </mat-grid-tile>
-
-  <mat-grid-tile class="text-alignement" [colspan]="1" [rowspan]="4">
-    <button class="btn btn-primary" (click)='updateToInService()'
-      [disabled]="vehicule.statutVehicule == 'HORS SERVICE'  || vehicule.statutVehicule == 'EN REPARATION' ">Mettre en
-      service</button>
-  </mat-grid-tile>
-
-  <mat-grid-tile class="text-alignement" [colspan]="1" [rowspan]="3">
-    <div>Catégorie: {{vehicule.categorie}}</div>
-  </mat-grid-tile>
-
-  <mat-grid-tile class="text-alignement" [colspan]="1" [rowspan]="4">
-    <button class="btn btn-danger" (click)='updateToOutOfService()'
-      [disabled]="vehicule.statutVehicule == 'EN SERVICE'  || vehicule.statutVehicule == 'EN REPARATION' ">Hors
-      service</button>
-  </mat-grid-tile>
-
-  <mat-grid-tile class="text-alignement" [colspan]="1" [rowspan]="3">
-    <div>Statut: {{vehicule.statutVehicule}}</div>
-  </mat-grid-tile>
-</mat-grid-list>
-
-<table mat-table [dataSource]="vehicule.reservationsEntreprise" class="mat-elevation-z8">
-
-  <!--- Note that these columns can be defined in any order.
-        The actual rendered columns are set as a property on the row definition" -->
-
-  <ng-container matColumnDef="dateDebut">
-    <th class="header-table" mat-header-cell *matHeaderCellDef> Date / Heure début </th>
-    <td class="content-table" mat-cell *matCellDef="let element"> {{element.dateDepart | date:'dd/MM/yyyy HH:mm'}} </td>
-  </ng-container>
-
-  <ng-container matColumnDef="dateFin">
-
-    <th class="header-table" mat-header-cell *matHeaderCellDef> Date / Heure fin </th>
-    <td class="content-table" mat-cell *matCellDef="let element"> {{element.dateArrivee | date:'dd/MM/yyyy HH:mm'}}
-    </td>
-  </ng-container>
-
-  <ng-container matColumnDef="responsable">
-    <th class="header-table" mat-header-cell *matHeaderCellDef> Responsable </th>
-    <td class="content-table" mat-cell *matCellDef="let element"> {{element.reservant}}
-    </td>
-
-  </ng-container>
-
-
-  <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-  <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
-</table>
+<div class="card w-100">
+  <div class="card-body">
+    <h3 class="card-title">Réservations</h3>
+    <table class="table table-striped w-max h-max">
+      <thead>
+        <tr>
+          <th>Date / Heure début</th>
+          <th>Date / Heure fin</th>
+          <th>Responsable</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let reservation of vehicule.reservationsEntreprise">
+          <td>{{reservation.dateDepart | date:'dd/MM/yyyy HH:mm'}}</td>
+          <td>{{reservation.dateArrivee | date:'dd/MM/yyyy HH:mm'}}</td>
+          <td>{{reservation.reservant}}</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
