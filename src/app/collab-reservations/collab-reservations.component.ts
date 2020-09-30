@@ -56,9 +56,9 @@ export class CollabReservationsComponent implements OnInit, OnDestroy {
       value => {
         this.reservationsEntrepriseHistoriqueAffichage = value.filter(
           reservation => reservation.statut !== 'ANNULEE').filter(
-          reservation => new Date( reservation.dateDepart).getTime() < Date.now());
+          reservation => new Date( reservation.dateArrivee).getTime() < Date.now());
         this.reservationsEntrepriseEnCoursAffichage = value.filter(
-          reservation => new Date( reservation.dateDepart).getTime() >= Date.now());
+          reservation => new Date( reservation.dateArrivee).getTime() >= Date.now());
       },
       err => { },
       () => { }
