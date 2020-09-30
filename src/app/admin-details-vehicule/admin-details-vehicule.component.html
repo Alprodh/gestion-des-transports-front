@@ -27,13 +27,13 @@
   <div class="col-4">
     <div class="text-center">
         <button class="btn btn-primary" (click)='updateToReparation()'
-        [disabled]="vehicule.statutVehicule == 'EN SERVICE'  || vehicule.statutVehicule == 'HORS SERVICE' ">
+        [disabled]="vehicule.statutVehicule == 'EN_REPARATION'">
         Mettre en réparation</button><br/>
         <button class="btn btn-primary mt-3 mb-3" (click)='updateToInService()'
-        [disabled]="vehicule.statutVehicule == 'HORS SERVICE'  || vehicule.statutVehicule == 'EN REPARATION' ">
+        [disabled]="vehicule.statutVehicule == 'EN_SERVICE'">
         Mettre en service</button><br/>
         <button class="btn btn-danger" (click)='updateToOutOfService()'
-        [disabled]="vehicule.statutVehicule == 'EN SERVICE'  || vehicule.statutVehicule == 'EN REPARATION' ">
+        [disabled]="vehicule.statutVehicule == 'HORS_SERVICE'">
         Hors service</button>
       </div>
     </div>
@@ -47,14 +47,12 @@
         <tr>
           <th>Date / Heure début</th>
           <th>Date / Heure fin</th>
-          <th>Responsable</th>
         </tr>
       </thead>
       <tbody>
         <tr *ngFor="let reservation of vehicule.reservationsEntreprise">
           <td>{{reservation.dateDepart | date:'dd/MM/yyyy HH:mm'}}</td>
           <td>{{reservation.dateArrivee | date:'dd/MM/yyyy HH:mm'}}</td>
-          <td>{{reservation.reservant}}</td>
         </tr>
       </tbody>
     </table>
