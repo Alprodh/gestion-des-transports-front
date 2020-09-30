@@ -18,5 +18,9 @@ npm start
 
 * Ouvrer un navigateur à l'adresse : http://localhost:4200
 
-* Github page : https://2020-d05-java-devops.github.io/gestion-des-transports-front/
+### Application web déployée :
 
+* Github page : https://alprodh.github.io/gestion-des-transports-front/
+
+!Attention! : un bug persistant empèche l'accès aux données sur le navigateur chrome. 
+Nous recommandons donc d'utiliser Firefox ou Internet Explorer pour apprécier pleinement cette application.
